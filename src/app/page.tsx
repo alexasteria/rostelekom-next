@@ -1,15 +1,16 @@
-import style from "./components/style.module.scss";
-import {UserData} from "@/app/components/types";
+import { UserData } from '@/app/components/types'
 
-const getUsers: () => Promise<UserData> = async() => {
+import style from './components/style.module.scss'
+
+const getUsers: () => Promise<UserData> = async () => {
     const res = await fetch(`${process.env._API_LINK_}/users`)
     if (!res.ok) {
         throw new Error('Failed to fetch data')
     }
-    return res.json()
+    return res.json() as Promise<UserData>
 }
 
-export default async function Page() {
+export default async function Page(): Promise<JSX.Element> {
     const usersData = await getUsers()
     return <main>
         <div className={style.userCount}>Всего пользователей - {usersData.total}</div>
