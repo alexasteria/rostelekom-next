@@ -1,23 +1,21 @@
 import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import React from "react";
+import type {Metadata} from 'next'
+import {Inter} from 'next/font/google'
+import React, {PropsWithChildren} from "react";
+import AuthLayout from "@/AuthLayout";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
-  title: 'Rostelekom Boilerplate',
-  description: 'Rostelekom Boilerplate',
+    title: 'Rostelekom Boilerplate',
+    description: 'Rostelekom Boilerplate',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  )
+const RootLayout = ({children}: PropsWithChildren) => {
+    return (
+        <html lang="en">
+        <body><AuthLayout>{children}</AuthLayout></body>
+        </html>
+    )
 }
+export default RootLayout
